@@ -5,15 +5,15 @@ workflows:
   main:
     jobs:
       - test:
+          context: org-global
           content: "hi hi"
 
 jobs:
   test:
-    docker:
-      - image: cimg/node:16.13.0
+    machine: true
     parameters:
       content:
-        default: "hi hi"
+        default: "ya"
         type: string
     steps:
       - notify_zulip:
@@ -45,5 +45,3 @@ commands:
               -d "to=<< parameters.stream >>" \
               -d "topic=<< parameters.topic >>" \
               -d "content=<< parameters.content >>"
-          shell: /bin/bash
-          when: always
