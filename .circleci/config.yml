@@ -32,7 +32,7 @@ commands:
         description: "Topic to use for messages. Defaults to 'test topic'."
         type: string
       content:
-        default: ""
+        default: "hello world"
         description: "Topic to use for messages. Defaults to 'test topic'."
         type: string
     steps:
