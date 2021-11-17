@@ -13,7 +13,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - greeting:
-          to: "My-Name"
+          to: "My-Name!!!"
 workflows:
   my-workflow:
     jobs:
