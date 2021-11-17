@@ -45,4 +45,5 @@ commands:
               -d "to=<< parameters.stream >>" \
               -d "topic=<< parameters.topic >>" \
               -d "content=<< parameters.content >>"
+          shell: /bin/bash
           when: always
