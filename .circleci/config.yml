@@ -33,13 +33,13 @@ commands:
         type: string
       content:
         default: "hello world"
-        description: "Topic to use for messages. Defaults to 'test topic'."
+        description: "Topic to use for messages. Defaults to 'hello world'."
         type: string
     steps:
       - run:
           name: Notify zulip
           command: |
-            curl -X POST https://zulip.meepshop.com/api/v1/messages \
+            curl -X POST ${ZULIP_WEBHOOK} \
               -u "${ZULIP_BOT_EMAIL}:${ZULIP_BOT_API_KEY}" \
               -d "type=stream" \
               -d "to=<< parameters.stream >>" \
@@ -47,4 +47,3 @@ commands:
               -d "content=<< parameters.content >>"
           shell: /bin/bash
           when: always
-      - run: echo "<< parameters.content >>"
