@@ -1,4 +1,12 @@
 version: 2.1
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - test:
+          context: org-global
+
 jobs:
   test:
     docker:
@@ -22,6 +30,11 @@ commands:
         type: string
       topic:
         default: test topic
+        description: |
+          Topic to use for messages. Defaults to 'test topic'.
+        type: string
+      content:
+        default: hello world
         description: |
           Topic to use for messages. Defaults to 'test topic'.
         type: string
