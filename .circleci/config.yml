@@ -1,16 +1,15 @@
 version: 2.1
 jobs:
-  notify_zulip:
+  test:
     build:
       docker:
         - image: buildpack-deps:trusty
-    test_go_go:
-      parameters:
-        content:
-          default: "hi hi"
-          type: string
-      steps:
-        - notify_zulip
+    parameters:
+      content:
+        default: "hi hi"
+        type: string
+    steps:
+      - notify_zulip
 
 commands:
   notify_zulip:
