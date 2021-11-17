@@ -2,7 +2,7 @@ version: 2.1
 
 commands:
   notify_zulip:
-    description: "Send message to meepshop zulip"
+    description: "Send message to zulip"
     parameters:
       stream:
         default: "test"
