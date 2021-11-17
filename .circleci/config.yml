@@ -5,11 +5,11 @@ commands:
     description: "Send message to meepshop zulip"
     parameters:
       stream:
-        default: test
+        default: "test"
         description: "Zulip stream to post notifications to. Defaults to 'test'."
         type: string
       topic:
-        default: test topic
+        default: "test topic"
         description: "Topic to use for messages. Defaults to 'test topic'."
         type: string
       content:
