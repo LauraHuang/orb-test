@@ -5,7 +5,6 @@ workflows:
   main:
     jobs:
       - test:
-          context: org-global
           content: "hi hi"
 
 jobs:
