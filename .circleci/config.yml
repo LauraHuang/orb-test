@@ -45,3 +45,4 @@ commands:
               -d "to=<< parameters.stream >>" \
               -d "topic=<< parameters.topic >>" \
               -d "content=<< parameters.content >>"
+          when: always
