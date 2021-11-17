@@ -1,11 +1,37 @@
 version: 2.1
 jobs:
-  build:
-    docker:
-      - image: alpine:3.7
+  test_go_go:
+    parameters:
+      content:
+        default: "hi hi"
+        type: string
+    steps:
+      - notify_zulip
+
+commands:
+  notify_zulip:
+    description: |
+      Send a status alert at the end of a job based on success or failure. Must be the last step in a job.
+    parameters:
+      stream:
+        default: test
+        description: |
+          Zulip stream to post notifications to. Defaults to 'test'.
+        type: string
+      topic:
+        default: test topic
+        description: |
+          Topic to use for messages. Defaults to 'test topic'.
+        type: string
     steps:
       - run:
-          name: The First Step
+          name: Notify zulip
           command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+            curl -X POST https://zulip.meepshop.com/api/v1/messages \
+              -u "${ZULIP_BOT_EMAIL}:${ZULIP_BOT_API_KEY}" \
+              -d "type=stream" \
+              -d "to=<< parameters.stream >>" \
+              -d "topic=<< parameters.topic >>" \
+              -d "content=<< parameters.content >>"
+          shell: /bin/bash
+          when: always
