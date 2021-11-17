@@ -17,23 +17,22 @@ commands:
         description: "Topic to use for messages. Defaults to 'hello world'."
         type: string
     steps:
-      - run: echo "yoyo <<parameters.content>>"
       - run:
           name: Notify zulip
           command: |
             curl -X POST ${ZULIP_WEBHOOK} \
               -u "${ZULIP_BOT_EMAIL}:${ZULIP_BOT_API_KEY}" \
               -d "type=stream" \
-              -d "to=<<parameters.stream>>" \
-              -d "topic=<<parameters.topic>>" \
-              -d "content=<<parameters.content>>"
+              -d "to=<< parameters.stream >>" \
+              -d "topic=<< parameters.topic >>" \
+              -d "content=<< parameters.content >>"
           shell: /bin/bash
           when: always
 
 jobs:
   test:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:16.13.0
     steps:
       - notify_zulip:
         content: "hi hi"
