@@ -17,7 +17,7 @@ jobs:
         type: string
     steps:
       - notify_zulip:
-        content: << parameters.content >>
+        content: "<< parameters.content >>"
 
 commands:
   notify_zulip:
