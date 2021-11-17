@@ -17,7 +17,8 @@ jobs:
         default: "hi hi"
         type: string
     steps:
-      - notify_zulip
+      - notify_zulip:
+        content: << parameters.content >>
 
 commands:
   notify_zulip:
