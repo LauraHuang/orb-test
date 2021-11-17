@@ -10,7 +10,8 @@ workflows:
 
 jobs:
   test:
-    machine: true
+    docker:
+      - image: cimg/node:16.13.0
     parameters:
       content:
         default: "ya"
