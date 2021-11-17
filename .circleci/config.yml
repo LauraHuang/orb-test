@@ -1,9 +1,8 @@
 version: 2.1
 jobs:
   test:
-    build:
-      docker:
-        - image: buildpack-deps:trusty
+    docker:
+      - image: cimg/node:16.13.0
     parameters:
       content:
         default: "hi hi"
