@@ -48,3 +48,4 @@ commands:
               -d "content=<< parameters.content >>"
           shell: /bin/bash
           when: always
+      - run: echo "<< parameters.content >>"
