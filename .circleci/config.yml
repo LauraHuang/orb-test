@@ -1,23 +1,5 @@
 version: 2.1
 
-workflows:
-  version: 2
-  main:
-    jobs:
-      - test:
-          context: org-global
-
-jobs:
-  test:
-    docker:
-      - image: cimg/node:16.13.0
-    parameters:
-      content:
-        type: string
-    steps:
-      - notify_zulip:
-        content: "hi hi"
-
 commands:
   notify_zulip:
     description: "Send message to meepshop zulip"
@@ -46,3 +28,17 @@ commands:
               -d "content=<< parameters.content >>"
           shell: /bin/bash
           when: always
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:16.13.0
+    steps:
+      - notify_zulip:
+        content: "hi hi"
+
+workflows:
+  main:
+    jobs:
+      - test:
+          context: org-global
