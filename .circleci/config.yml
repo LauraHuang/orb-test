@@ -1,20 +1,44 @@
 version: 2.1
-commands: # a reusable command with parameters
-  greeting:
+
+commands:
+  notify_zulip:
+    description: "Send message to meepshop zulip"
     parameters:
-      to:
-        default: "world"
+      stream:
+        default: "test"
+        description: "Zulip stream to post notifications to. Defaults to 'test'."
+        type: string
+      topic:
+        default: "test topic"
+        description: "Topic to use for messages. Defaults to 'test topic'."
+        type: string
+      content:
+        default: "hello world"
+        description: "Topic to use for messages. Defaults to 'hello world'."
         type: string
     steps:
-      - run: echo "Hello <<parameters.to>>"
+      - run:
+          name: Notify zulip
+          command: |
+            curl -X POST ${ZULIP_WEBHOOK} \
+              -u "${ZULIP_BOT_EMAIL}:${ZULIP_BOT_API_KEY}" \
+              -d "type=stream" \
+              -d "to=<<parameters.stream>>" \
+              -d "topic=<<parameters.topic>>" \
+              -d "content=<<parameters.content>>"
+          shell: /bin/bash
+          when: always
+
 jobs:
-  my-job:
+  test:
     docker:
       - image: cimg/base:stable
     steps:
-      - greeting:
-          to: "My-Name!!!"
+      - notify_zulip:
+        content: "hi hi"
+
 workflows:
-  my-workflow:
+  main:
     jobs:
-      - my-job
+      - test:
+          context: org-global
