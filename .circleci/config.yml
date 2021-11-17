@@ -35,7 +35,7 @@ jobs:
       - image: cimg/node:16.13.0
     steps:
       - notify_zulip:
-        content: "hi hi"
+          content: "hi hi"
 
 workflows:
   main:
