@@ -6,7 +6,6 @@ workflows:
     jobs:
       - test:
           context: org-global
-          content: "hi hi"
 
 jobs:
   test:
@@ -17,7 +16,7 @@ jobs:
         type: string
     steps:
       - notify_zulip:
-        content: "<< parameters.content >>"
+        content: "hi hi"
 
 commands:
   notify_zulip:
