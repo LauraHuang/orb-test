@@ -11,32 +11,25 @@ jobs:
   test:
     docker:
       - image: cimg/node:16.13.0
-    parameters:
-      content:
-        default: "hi hi"
-        type: string
+    content: "hi hi"
     steps:
       - notify_zulip
 
 commands:
   notify_zulip:
-    description: |
-      Send a status alert at the end of a job based on success or failure. Must be the last step in a job.
+    description: "Send message to meepshop zulip"
     parameters:
       stream:
         default: test
-        description: |
-          Zulip stream to post notifications to. Defaults to 'test'.
+        description: "Zulip stream to post notifications to. Defaults to 'test'."
         type: string
       topic:
         default: test topic
-        description: |
-          Topic to use for messages. Defaults to 'test topic'.
+        description: "Topic to use for messages. Defaults to 'test topic'."
         type: string
       content:
         default: hello world
-        description: |
-          Topic to use for messages. Defaults to 'test topic'.
+        description: "Topic to use for messages. Defaults to 'test topic'."
         type: string
     steps:
       - run:
