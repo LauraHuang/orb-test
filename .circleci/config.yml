@@ -6,12 +6,16 @@ workflows:
     jobs:
       - test:
           context: org-global
+          content: "hi hi"
 
 jobs:
   test:
     docker:
       - image: cimg/node:16.13.0
-    content: "hi hi"
+    parameters:
+      content:
+        default: "hi hi"
+        type: string
     steps:
       - notify_zulip
 
