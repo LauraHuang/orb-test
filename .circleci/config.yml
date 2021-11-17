@@ -28,17 +28,3 @@ commands:
               -d "content=<< parameters.content >>"
           shell: /bin/bash
           when: always
-
-jobs:
-  test:
-    docker:
-      - image: cimg/node:16.13.0
-    steps:
-      - notify_zulip:
-          content: "hi hi"
-
-workflows:
-  main:
-    jobs:
-      - test:
-          context: org-global
